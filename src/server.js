@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 // --- Import your routes using ES Module syntax ---
 import sosRoutes from '../src/routes/sos.routes.js';
 import vapiWebhookRoutes from '../src/routes/vapi.webhook.routes.js';
+import getDataRoutes from '../src/routes/getData.routes.js';
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGO_URI)
 // --- Use the imported routes ---
 app.use('/api/sos', sosRoutes);
 app.use('/api/vapi', vapiWebhookRoutes);
+app.use('/api/sos-requests', getDataRoutes);
 
 app.get('/', (req, res) => {
     res.send("Welcome to the Disaster Control API");
