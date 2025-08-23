@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 
 const sosRequestSchema = new mongoose.Schema({
-    requesterId: { 
-        type: String, 
-        required: true 
+    requesterId: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        default: 'Unknown'
     },
     location: {
         type: {
@@ -21,17 +25,14 @@ const sosRequestSchema = new mongoose.Schema({
         enum: ['New', 'Calling', 'InProgress', 'Resolved'],
         default: 'New'
     },
-    vapiCallId: String, // Vapi's unique call ID
-    transcript: String,
-    urgency: {
-        type: String,
-        enum: ['High', 'Medium', 'Low', 'Unclassified'],
-        default: 'Unclassified'
+    vapiCallId: String,
+    issue: {
+        type: String
     },
-    details: {
-        peopleCount: Number,
-        hasInjuries: Boolean,
-    }
+    transcript: {
+        type: String
+    },
+    // The urgency field has been removed
 }, { timestamps: true });
 
 sosRequestSchema.index({ location: '2dsphere' });
