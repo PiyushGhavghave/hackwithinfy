@@ -20,6 +20,10 @@ const sosRequestSchema = new mongoose.Schema({
             required: true
         }
     },
+    reportedLocation: {
+        type: String,
+        default: 'Not specified'
+    },
     status: {
         type: String,
         enum: ['New', 'Calling', 'InProgress', 'Resolved'],
@@ -32,7 +36,14 @@ const sosRequestSchema = new mongoose.Schema({
     transcript: {
         type: String
     },
-    // The urgency field has been removed
+    peopleCount: {
+        type: Number,
+        default: 1
+    },
+    hasInjuries: {
+        type: Boolean,
+        default: false
+    }
 }, { timestamps: true });
 
 sosRequestSchema.index({ location: '2dsphere' });
